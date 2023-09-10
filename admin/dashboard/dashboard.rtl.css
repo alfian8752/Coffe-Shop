@@ -23,8 +23,10 @@ body {
 }
 
 @media (max-width: 767.98px) {
-  .sidebar {
-    top: 5rem;
+  .navbar-nav {
+    top: 100px;
+    position: absolute;
+    left: 20px;
   }
 }
 

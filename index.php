@@ -1,3 +1,8 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', '', 'db_ktw');
+$produk = mysqli_query($conn, 'SELECT * FROM produk');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,38 +74,15 @@
         <h2><span>Menu</span> Kami</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus fuga error rem beatae perferendis harum.</p>
 
+        <?php foreach ($produk as $row) :?>
         <div class="row">
             <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>
-                <p class="menu-card-price">IDR 12K</p>
-            </div>
-            <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>
-                <p class="menu-card-price">IDR 12K</p>
-            </div>
-            <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>jhgjhgjhg
-                <p class="menu-card-price">IDR 12K</p>
-            </div>
-            <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>
-                <p class="menu-card-price">IDR 12K</p>
-            </div>
-            <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>
-                <p class="menu-card-price">IDR 12K</p>
-            </div>
-            <div class="menu-card">
-                <img src="img/menu/1.jpg" alt="es pisang ijo" class="menu-card-img">
-                <h3 class="menu-card-title">Tea</h3>
-                <p class="menu-card-price">IDR 12K</p>
+                <img src="img/menu/<?= $row['gambar'] ?>" alt="es pisang ijo" class="menu-card-img">
+                <h3 class="menu-card-title"><?=  $row['nama'] ?></h3>
+                <p class="menu-card-price">IDR <?= $row['harga'] ?></p>
             </div>
         </div>
+        <?php endforeach ?>
     </seciton>
     <!-- Menu Section End -->
 
