@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->String('nama');
             $table->Integer('harga');
-            $table->String('deskripsi')->default(" ");
-            $table->String('gambar');
+            $table->Text('deskripsi')->nullable()->default(null);
+            $table->String('gambar')->default('1.jpg');
             $table->timestamps();
         });
     }

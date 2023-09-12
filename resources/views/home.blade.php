@@ -32,7 +32,7 @@
         <div class="navbar-extra">
             <a href="#" id="search"><i data-feather="search"></i></a>
             <a href="#" id="shoping-cart"><i data-feather="shopping-cart"></i></a>
-            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+            <a id="hamburger-menu"><i data-feather="menu"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -72,7 +72,7 @@
         <div class="row">
         @foreach ($products as $product)
             <div class="menu-card">
-                <img src="img/menu/{{ $product->gambar }}" alt="es pisang ijo" class="menu-card-img">
+                <img src="image-uploads/{{ $product->gambar }}" alt="es pisang ijo" class="menu-card-img">
                 <h3 class="menu-card-title">{{ $product->nama }}</h3>
                 <p class="menu-card-price">IDR {{ $product->harga }}</p>
             </div>

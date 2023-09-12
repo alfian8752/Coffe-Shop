@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
@@ -24,15 +24,34 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/create_product', [
+            'title' => 'Tambah Produk'
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+        $product = new Product;
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $imageName = $image->getClientOriginalName();
+            $request->gambar->move(public_path('image-uploads'), $imageName);
+
+            $product->gambar = $imageName;
+        } else {
+            $product->gambar = '1.jpg';
+        }
+        $product->nama = $request->nama;
+        $product->harga = $request->harga;
+        $product->deskripsi = $request->deskripsi;
+
+        $product->save();
+
+        // return ddd($request);
+        return redirect('/produk');
     }
 
     /**
@@ -46,17 +65,36 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $id)
     {
-        //
+        return view('admin/edit_product', [
+            'title' => 'Edit Produk',
+            'product' => $product::find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product, $id)
     {
-        //
+        $product = $product::find($id);
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $imageName = $image->getClientOriginalName();
+            $request->gambar->move(public_path('image-uploads'), $imageName);
+
+            $product->gambar = $imageName;
+        } else {
+            $product->gambar = $product->gambar;
+        }
+        $product->nama = $request->nama;
+        $product->harga = $request->harga;
+        $product->deskripsi = $request->deskripsi;
+
+        $product->update();
+
+        return redirect('/admin-produk');
     }
 
     /**

@@ -27,7 +27,7 @@
         .produk-section table td {
             /* display: flex; */
             /* flex-direction: column;
-              justify-content: center; */
+                  justify-content: center; */
             align-items: center;
         }
 
@@ -55,21 +55,21 @@
             <h1 class="h2">Produk</h1>
             <!-- <div class="btn-toolbar mb-2 mb-md-0"> -->
             <!-- <div class="btn-group me-2">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div> -->
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        </div> -->
             <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                      <span data-feather="calendar"></span>
-                      This week
-                    </button> -->
+                          <span data-feather="calendar"></span>
+                          This week
+                        </button> -->
             <!-- </div> -->
         </div>
-        <a href="uploadProduk.php" class="btn btn-success">Tambah Produk</a>
+        <a href="tambah-produk" class="btn btn-success">Tambah Produk</a>
         <div class="table-responsive produk-section">
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">Kode</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Gambar</th>
                         <th scope="col">Produk</th>
                         <th scope="col">Harga</th>
@@ -80,11 +80,11 @@
                     @foreach ($products as $row)
                         <tr d-flex flex-column justify-content-center>
                             <td><?= $row['id'] ?></td>
-                            <td><img src="/img/menu/<?= $row['gambar'] ?>"></td>
+                            <td><img src="/image-uploads/<?= $row['gambar'] ?>"></td>
                             <td><?= $row['nama'] ?></td>
                             <td><?= $row['harga'] ?></td>
                             <td class="action">
-                                <a type="submit" class="btn btn-danger" href="/hapus-produk-{{ $row->id }}">Hapus</a>
+                                <a type="submit" class="btn btn-danger" href="/hapus-produk-{{ $row->id }}" onclick="return confirm('yakin ingin menghapus produk {{ $row->nama }}?')">Hapus</a>
                                 <a type="submit" class="btn btn-warning" href="/edit-produk-{{ $row->id }}">edit</a>
                             </td>
                         </tr>
@@ -93,11 +93,11 @@
             </table>
         </div>
     </main>
-    @section('sript')
-        @if ( session()->has('success'))
-            <script>
-                alert("{{ session('success') }}");
-            </script>
-        @endif
-    @endsection
+@section('sript')
+    @if (session()->has('success'))
+        <script>
+            alert("{{ session('success') }}");
+        </script>
+    @endif
+@endsection
 @endsection

@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 // route halaman admin->produk
-Route::get('/produk', [ProductController::class, 'index']);
+Route::get('/admin-produk', [ProductController::class, 'index']);
 // route halaman tambah produk
 Route::get('/tambah-produk', [ProductController::class, 'create']);
 // route create produk ke database
-Route::post('/tambah-produk', [ProductController::class, 'create']);
+Route::post('/tambah-produk', [ProductController::class, 'store']);
 
+Route::get('/edit-produk-{id}', [ProductController::class, 'edit']);
+Route::post('/edit-produk-{id}', [ProductController::class, 'update']);
 
 Route::get('/hapus-produk-{id}', [ProductController::class, 'delete']);
-Route::get('/edit', [ProductController::class, 'index']);
